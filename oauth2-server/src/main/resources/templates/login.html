@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="uk-height-1-1" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>OAuth2 Demo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.3/css/uikit.gradient.min.css" rel="stylesheet"/>
+</head>
+
+<body class="uk-height-1-1">
+
+<div class="uk-vertical-align uk-text-center uk-height-1-1">
+    <div class="uk-vertical-align-middle" style="width: 250px;">
+        <h1>Login Form</h1>
+
+        <p class="uk-text-danger" th:if="${param.error}">
+            用户名或密码错误...
+        </p>
+
+        <form class="uk-panel uk-panel-box uk-form" method="post" th:action="@{/login}">
+            <div class="uk-form-row">
+                <input class="uk-width-1-1 uk-form-large" name="username" placeholder="Username" type="text"
+                       value="admin"/>
+            </div>
+            <div class="uk-form-row">
+                <input class="uk-width-1-1 uk-form-large" name="password" placeholder="Password" type="password"
+                       value="admin"/>
+            </div>
+            <div class="uk-form-row">
+                <button class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Login</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
