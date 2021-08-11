@@ -52,7 +52,7 @@ public class ResourceUserController {
      * @param authentication
      * @return
      */
-    @PreAuthorize("hasAuthority('WRITE')")
+    @PreAuthorize("hasAuthority('WRITE') and hasAuthority('ADMIN')")
     @PostMapping
     public BaseResponse<Object> write(OAuth2Authentication authentication) {
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();

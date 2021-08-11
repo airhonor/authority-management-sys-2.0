@@ -38,21 +38,33 @@ public class SysClientServiceImpl implements SysClientService {
         Set<String> grantTypes = new HashSet<>(5);
         grantTypes.add("password");
         grantTypes.add("authorization_code");
+        grantTypes.add("refresh_token");
+
 
         Set<String> registeredRedirectUris = new HashSet<>(1);
         registeredRedirectUris.add("https://baidu.com");
 
         return SysClientDetails.builder()
+                //客户端id
                 .clientId("userservice1")
+                //拥有的资源id
                 .resourceId(resourceIds)
+                //是否需要secret
                 .isSecretRequired(true)
+                //secret加密方式
                 .clientSecret(new BCryptPasswordEncoder().encode("1234"))
+                //此客户端的范围。 如果客户端不在范围内，则为空
                 .scope(scopes)
+                //支持的授权模式，四种模式支持哪几种
                 .authorizedGrantTypes(grantTypes)
+                //官方注册的回调地址，这个地址是需要和授权请求的回调地址一致
                 .registeredRedirectUri(registeredRedirectUris)
                 .isScoped(true)
+                //access_token的有效时间
                 .accessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(2))
+                //refresh_token的有效时间
                 .refreshTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(30))
+                //是否可以自主授权
                 .isAutoApprove(true)
                 .build();
     }

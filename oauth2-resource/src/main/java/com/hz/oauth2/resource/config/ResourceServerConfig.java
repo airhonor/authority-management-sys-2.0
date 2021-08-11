@@ -27,6 +27,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     /**
      * 声明了资源服务器的ID是userservice，声明了资源服务器的TokenStore是JWT
+     * 注意，这里硬编码了资源id，这个资源id和client所拥有的的资源id需要匹配
      *
      * @param resources
      * @throws Exception
@@ -54,6 +55,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     protected JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        //和授权服务的key相同
         converter.setSigningKey(Constant.JWT_SECRET);
         return converter;
     }
